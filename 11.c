@@ -15,12 +15,11 @@
 
 int main ()
 {
-	char str[1000000], str2[1000000]={0}, e=0;
-	unsigned int i = 1, j=0, k=0;
+	char str[1000000], str2[1000000]={0},str3[1000000]={0};
+	unsigned int i = 1, j=0;
 	bool p = false;
 
 	while(fgets(str,1000000,stdin) != NULL){
-		
 		i=0;
 	    j=0;
 		for(i = 0; i <= strlen(str); i++)
@@ -28,6 +27,23 @@ int main ()
 	    	if(str[i] == ' ')
 	    	{
 	    		str2[j] = str[i];
+	    		if(str2[j]>='a' && str2[j]<='z')
+				{
+		    		if(str2[j] + ROT <= 'z')
+		    			str3[j] = str2[j] + ROT;
+		    		else
+		    			str3[j] = str2[j] - ROT;
+		    	}
+		    	else if(str2[j]>='A' && str2[j]<='Z')
+				{
+		    		if(str2[j] + ROT <= 'Z')
+		    			str3[j] = str2[j] + ROT;
+		    		else
+		    			str3[j] = str2[j] - ROT;
+		    	}
+		    	else
+		    		str3[j] = str2[j];
+
 	    		j++;
 	    		if(str[i-1] == 'p')
 	    			p=!p;
@@ -37,6 +53,23 @@ int main ()
 	    		if(p)
 		    	{
 		    		str2[j] = str[i];
+		    		if(str2[j]>='a' && str2[j]<='z')
+					{
+			    		if(str2[j] + ROT <= 'z')
+			    			str3[j] = str2[j] + ROT;
+			    		else
+			    			str3[j] = str2[j] - ROT;
+			    	}
+			    	else if(str2[j]>='A' && str2[j]<='Z')
+					{
+			    		if(str2[j] + ROT <= 'Z')
+			    			str3[j] = str2[j] + ROT;
+			    		else
+			    			str3[j] = str2[j] - ROT;
+			    	}
+			    	else
+			    		str3[j] = str2[j];
+
 		    		j++;
 		    		p =!p;
 		    	}   	
@@ -46,43 +79,6 @@ int main ()
 	    		}	
 	    	}
 	    }
-	    for(k = 0; k <= strlen(str2); k++)
-	    {
-		    if(str2[k] >='A' && str2[k] <='Z')
-	        {
-	            if((e = str2[k] + ROT) <= 'Z')
-	            { 	str[k] = e;
-	            	printf("%c\n", str2[k]);
-	            }
-	            else
-	            {
-	                e = str2[k] - ROT;
-	                str2[k] = e;
-	                printf("%c\n", str2[k]);
-	            }
-	        }
-	        else if(str2[k] >='a' && str2[k] <='z')
-	        {
-	            if((e= str2[k] + ROT) <= 'z')
-	            { 
-	               	str2[k] = e;
-	            	printf("%c\n", str2[k]);
-	            }
-	            else
-	            {
-	                e = str2[k] - ROT;
-	                str2[k] = e;
-	                printf("%c\n", str2[k]);
-	            }
-	        }
-	        else
-	        {
-	            str2[k] = str2[k];
-	            printf("%c\n", str2[k]);
-	        }
-	    }
-		    printf("%s\n", str2);
-	}
-
-    
+		    printf("%s\n", str3);
+	}    
 }
